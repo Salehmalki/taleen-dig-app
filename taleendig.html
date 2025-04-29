@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مشروع المسار الرياضي في مدينة الرياض</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* تخصيص بسيط للخط */
+        body {
+            font-family: 'Arial', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease; /* انتقال سلس للألوان */
+        }
+        /* تدرج خلفية خفيف للقسم الرئيسي */
+        .gradient-bg {
+            background: linear-gradient(to bottom, #d1fae5, #a7f3d0); /* تدرج من الأخضر الفاتح إلى الأخضر المتوسط */
+            transition: background-color 0.3s ease;
+        }
+        /* تنسيق خاص للعنوان لترتيب العناصر */
+        .header-title-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap; /* للسماح بالعناصر بالنزول لسطر جديد في الشاشات الصغيرة */
+            gap: 1rem; /* مسافة بين العناصر */
+        }
+        .header-title-container h1 {
+            margin: 0; /* إزالة الهامش الافتراضي للعنوان */
+        }
+        .logo-img {
+            height: 50px; /* تحديد ارتفاع موحد للشعارات (لم يعد يستخدم للعلم) */
+            width: auto; /* الحفاظ على نسبة العرض إلى الارتفاع */
+        }
+         @media (max-width: 640px) {
+            .logo-img {
+                height: 40px; /* تصغير حجم الشعارات (لم يعد يستخدم للعلم) على الجوال */
+            }
+             .header-title-container h1 {
+                font-size: 2rem; /* تصغير حجم العنوان على الجوال */
+            }
+        }
+
+        /* أنماط الوضع الداكن */
+        body.dark-mode {
+            background-color: #1a202c; /* خلفية داكنة */
+            color: #e2e8f0; /* لون نص فاتح */
+        }
+
+        body.dark-mode .bg-white {
+            background-color: #2d3748; /* خلفية داكنة للأقسام */
+            color: #e2e8f0;
+        }
+
+        body.dark-mode .text-gray-800 {
+             color: #e2e8f0;
+        }
+
+        body.dark-mode .text-gray-700 {
+             color: #cbd5e0;
+        }
+
+         body.dark-mode .text-gray-600 {
+             color: #a0aec0;
+        }
+
+        body.dark-mode .text-green-800 {
+            color: #68d391; /* لون أخضر فاتح للعناوين */
+        }
+
+        body.dark-mode .text-green-700 {
+            color: #48bb78; /* لون أخضر متوسط للعناوين */
+        }
+
+         body.dark-mode .text-green-600 {
+            color: #38a169; /* لون أخضر أغمق للأيقونات */
+        }
+
+         body.dark-mode .bg-green-100 {
+            background-color: #2f855a; /* خلفية داكنة للمكونات */
+            color: #e2e8f0;
+        }
+
+        body.dark-mode .border-green-300 {
+            border-color: #48bb78; /* حدود فاتحة */
+        }
+
+        body.dark-mode .bg-blue-100 {
+            background-color: #3182ce; /* خلفية داكنة للمكونات */
+            color: #e2e8f0;
+        }
+
+         body.dark-mode .border-blue-300 {
+            border-color: #63b3ed; /* حدود فاتحة */
+        }
+
+        body.dark-mode .bg-yellow-100 {
+            background-color: #d69e2e; /* خلفية داكنة للمكونات */
+            color: #e2e8f0;
+        }
+
+         body.dark-mode .border-yellow-300 {
+            border-color: #f6e05e; /* حدود فاتحة */
+        }
+
+        body.dark-mode .bg-purple-100 {
+            background-color: #805ad5; /* خلفية داكنة للمكونات */
+            color: #e2e8f0;
+        }
+
+         body.dark-mode .border-purple-300 {
+            border-color: #b794f4; /* حدود فاتحة */
+        }
+
+        body.dark-mode .gradient-bg {
+             background: linear-gradient(to bottom, #2d3748, #4a5568); /* تدرج داكن */
+             color: #e2e8f0;
+        }
+
+        body.dark-mode footer {
+            color: #a0aec0; /* لون نص فاتح للخاتمة */
+        }
+
+        /* أنماط الوضع الداكن لعنصر التاريخ والوقت */
+        body.dark-mode #datetime {
+            background-color: #4a5568; /* خلفية رمادية داكنة */
+            color: #e2e8f0; /* لون نص فاتح */
+        }
+
+
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <div class="container mx-auto p-6">
+
+        <div class="flex justify-between items-center mb-6 flex-wrap gap-4">
+            <div id="datetime" class="bg-gray-300 text-gray-800 py-2 px-4 rounded-full text-sm md:text-base">
+                </div>
+            <button id="darkModeToggle" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out">
+                <i class="fas fa-moon"></i> الوضع الداكن
+            </button>
+        </div>
+
+        <header class="text-center mb-10">
+            <div class="header-title-container">
+                <h1 class="text-4xl font-bold text-green-800">
+                    <i class="fas fa-running text-green-600"></i> مشروع المسار الرياضي في الرياض <i class="fas fa-bicycle text-green-600"></i>
+                </h1>
+
+                </div>
+            <p class="text-xl text-gray-700 mt-2">وجهة رياضية وترفيهية عالمية ✨</p>
+        </header>
+
+        <section class="bg-white rounded-lg shadow-lg p-6 mb-8 gradient-bg">
+            <h2 class="text-2xl font-semibold text-green-700 mb-4">
+                <i class="fas fa-info-circle text-green-600 mr-2"></i> نبذة عن المشروع
+            </h2>
+            <p class="text-gray-700 leading-loose">
+                مشروع المسار الرياضي هو أحد المشاريع الكبرى ضمن رؤية السعودية 2030، ويهدف إلى تحويل مدينة الرياض إلى واحدة من أكثر المدن ملاءمة للعيش في العالم. يمتد المشروع على مسافة حوالي 135 كيلومترًا ويربط بين وادي حنيفة غربًا ووادي السلي شرقًا.
+            </p>
+            <p class="text-gray-700 leading-loose mt-4">
+                لا يقتصر المشروع على كونه مسارًا للمشي وركوب الدراجات، بل هو بيئة متكاملة تشجع على الصحة والنشاط البدني من خلال توفير مرافق رياضية متنوعة ومساحات خضراء واسعة وأنشطة ترفيهية وثقافية. 🌳🚴‍♂️🚶‍♀️
+            </p>
+        </section>
+
+        <section class="bg-white rounded-lg shadow-lg p-6 mb-8">
+            <h2 class="text-2xl font-semibold text-green-700 mb-4">
+                <i class="fas fa-bullseye text-green-600 mr-2"></i> أهداف المشروع
+            </h2>
+            <ul class="list-disc list-inside text-gray-700 leading-loose">
+                <li>تعزيز نمط حياة صحي ونشط لسكان الرياض. 💪</li>
+                <li>تحسين جودة الحياة والارتقاء بالمشهد الحضري للعاصمة. ✨</li>
+                <li>توفير خيارات تنقل مستدامة وصديقة للبيئة. 🌱</li>
+                <li>خلق وجهة مجتمعية جاذبة للرياضة والترفيه والثقافة. 🤝</li>
+                <li>زيادة المساحات الخضراء وتحسين جودة الهواء. 💨</li>
+            </ul>
+        </section>
+
+        <section class="bg-white rounded-lg shadow-lg p-6 mb-8">
+            <h2 class="text-2xl font-semibold text-green-700 mb-4">
+                <i class="fas fa-list text-green-600 mr-2"></i> مكونات رئيسية (أمثلة)
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-green-100 rounded-lg p-4 border border-green-300">
+                    <h3 class="text-xl font-medium text-green-800 mb-2">
+                        <i class="fas fa-route text-green-600 mr-2"></i> مسارات المشي والدراجات
+                    </h3>
+                    <p class="text-gray-700">مسارات مخصصة وآمنة لمختلف المستويات. 🚶‍♀️🚴‍♂️</p>
+                </div>
+                <div class="bg-blue-100 rounded-lg p-4 border border-blue-300">
+                    <h3 class="text-xl font-medium text-blue-800 mb-2">
+                        <i class="fas fa-dumbbell text-blue-600 mr-2"></i> المرافق الرياضية
+                    </h3>
+                    <p class="text-gray-700">أكثر من 50 مرفقًا رياضيًا متنوعًا. 🏋️‍♀️⚽🏀</p>
+                </div>
+                <div class="bg-yellow-100 rounded-lg p-4 border border-yellow-300">
+                    <h3 class="text-xl font-medium text-yellow-800 mb-2">
+                        <i class="fas fa-tree text-yellow-600 mr-2"></i> المساحات الخضراء
+                    </h3>
+                    <p class="text-gray-700">حدائق ومناطق مفتوحة للاسترخاء والترفيه. 🌲🌸</p>
+                </div>
+                 <div class="bg-purple-100 rounded-lg p-4 border border-purple-300">
+                    <h3 class="text-xl font-medium text-purple-800 mb-2">
+                        <i class="fas fa-calendar-alt text-purple-600 mr-2"></i> مناطق الفعاليات والترفيه
+                    </h3>
+                    <p class="text-gray-700">مساحات مخصصة للأنشطة الثقافية والترفيهية. 🎉🎭</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-white rounded-lg shadow-lg p-6 mb-8">
+            <h2 class="text-2xl font-semibold text-green-700 mb-4">
+                <i class="fas fa-map-marker-alt text-green-600 mr-2"></i> الموقع
+            </h2>
+            <p class="text-gray-700 leading-loose">
+                يمتد المسار الرياضي على طريق الأمير محمد بن سلمان بن عبدالعزيز، ويربط بين وادي حنيفة في غرب الرياض ووادي السلي في شرقها. 🗺️
+            </p>
+        </section>
+
+        <footer class="text-center text-gray-600 mt-10">
+            <p>&copy; مشروع مدرسي عن المسار الرياضي</p>
+            <p>إعداد الطالبة: تالين المالكي</p>
+            <p>إشراف المعلمة: ابتسام القحطاني</p>
+        </footer>
+
+    </div>
+
+    <script>
+        // تحديث التاريخ والوقت والتحية
+        function updateDateTime() {
+            const now = new Date();
+            // استخدام toLocaleDateString مع التقويم الهجري
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', calendar: 'islamic-umalqura' };
+            const dateString = now.toLocaleDateString('ar-SA', options);
+            const hour = now.getHours();
+
+            let greeting;
+            if (hour >= 5 && hour < 12) {
+                greeting = "صباح الخير";
+            } else if (hour >= 12 && hour < 18) {
+                greeting = "مساء الخير";
+            } else {
+                greeting = "مساء الخير"; // أو يمكنك استخدام "مساء الخير" للمساء المتأخر أيضاً
+            }
+
+            const datetimeElement = document.getElementById('datetime');
+            if (datetimeElement) {
+                 datetimeElement.innerText = `${greeting}، ${dateString}`;
+                 console.log('Date and time updated:', datetimeElement.innerText); // Debugging log
+            } else {
+                 console.error('Datetime element not found!'); // Debugging log
+            }
+        }
+
+        // تشغيل التحديث عند تحميل الصفحة وكل دقيقة
+        // استخدام DOMContentLoaded للتأكد من تحميل DOM قبل تشغيل السكريبت
+        document.addEventListener('DOMContentLoaded', (event) => {
+            console.log('DOM fully loaded and parsed'); // Debugging log
+            updateDateTime();
+            setInterval(updateDateTime, 60000); // التحديث كل دقيقة
+
+            // وظيفة تبديل الوضع الداكن
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            const datetimeElement = document.getElementById('datetime'); // الحصول على عنصر التاريخ والوقت
+
+            if (darkModeToggle) {
+                darkModeToggle.addEventListener('click', () => {
+                    console.log('Dark mode toggle clicked'); // Debugging log
+                    body.classList.toggle('dark-mode');
+
+                    // تغيير نص الزر والأيقونة بناءً على الوضع
+                    if (body.classList.contains('dark-mode')) {
+                        darkModeToggle.innerHTML = '<i class="fas fa-sun"></i> الوضع الفاتح';
+                         darkModeToggle.classList.remove('bg-gray-300', 'hover:bg-gray-400', 'text-gray-800');
+                         darkModeToggle.classList.add('bg-gray-700', 'hover:bg-gray-600', 'text-white');
+
+                         // تحديث ألوان عنصر التاريخ والوقت في الوضع الداكن
+                         if (datetimeElement) {
+                             datetimeElement.classList.remove('bg-gray-300', 'text-gray-800');
+                             datetimeElement.classList.add('bg-gray-700', 'text-white'); // استخدم نفس ألوان الزر الداكن
+                         }
+                    } else {
+                        darkModeToggle.innerHTML = '<i class="fas fa-moon"></i> الوضع الداكن';
+                         darkModeToggle.classList.remove('bg-gray-700', 'hover:bg-gray-600', 'text-white');
+                         darkModeToggle.classList.add('bg-gray-300', 'hover:bg-gray-400', 'text-gray-800');
+
+                         // إعادة ألوان عنصر التاريخ والوقت للوضع الفاتح
+                         if (datetimeElement) {
+                             datetimeElement.classList.remove('bg-gray-700', 'text-white');
+                             datetimeElement.classList.add('bg-gray-300', 'text-gray-800');
+                         }
+                    }
+                     console.log('Dark mode status:', body.classList.contains('dark-mode')); // Debugging log
+                });
+            } else {
+                 console.error('Dark mode toggle button not found!'); // Debugging log
+            }
+
+
+             // التحقق من تفضيل المستخدم للوضع الداكن من قبل (اختياري)
+            if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                 // يمكن إضافة منطق هنا لتطبيق الوضع الداكن تلقائيًا إذا كان مفضلاً لدى المستخدم
+                 // حالياً، نعتمد على النقر على الزر فقط
+            }
+        });
+
+
+    </script>
+
+</body>
+</html>
