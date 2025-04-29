@@ -127,6 +127,24 @@
             color: #e2e8f0; /* لون نص فاتح */
         }
 
+        /* تعديل موضع زر الوضع الداكن */
+        .flex.justify-between.items-center {
+            justify-content: space-between; /* لضمان أن الزر في الزاوية اليسرى */
+        }
+
+        /* تحسين تنسيق النصوص والإيموجي في بطاقات المكونات الرئيسية */
+        .grid .bg-green-100, .grid .bg-blue-100, .grid .bg-yellow-100, .grid .bg-purple-100 {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* توسيط النصوص والإيموجي */
+            text-align: center; /* توسيط النصوص داخل البطاقات */
+        }
+
+        .grid .bg-green-100 h3, .grid .bg-blue-100 h3, .grid .bg-yellow-100 h3, .grid .bg-purple-100 h3 {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem; /* مسافة بين النص والإيموجي */
+        }
 
     </style>
 </head>
